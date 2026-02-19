@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>汤头条视频直播 Demo</title>
+</head>
+<body>
+  <h1>汤头条视频直播 SDK Demo</h1>
+
+  <input id="room" placeholder="Room ID">
+  <input id="user" placeholder="Username">
+  <button onclick="join()">Join</button>
+
+  <br><br>
+
+  <input id="msg" placeholder="Message">
+  <button onclick="send()">Send</button>
+
+  <script src="../sdk/tangtoutiao-live-sdk.js"></script>
+  <script>
+    const sdk = new TangtoutiaoLiveSDK({ serverUrl: "ws://localhost:9800" });
+    sdk.connect();
+
+    function join() {
+      sdk.joinRoom(
+        document.getElementById("room").value,
+        document.getElementById("user").value
+      );
+    }
+
+    function send() {
+      sdk.sendMessage(
+        document.getElementById("msg").value
+      );
+    }
+  </script>
+</body>
+</html>
